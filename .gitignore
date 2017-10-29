@@ -1,0 +1,9 @@
+packages/
+BookStoreWebsite/bin/
+BookStoreWebsite/obj/Debug/BookStoreWebsite.dll
+BookStoreWebsite.Tests/bin/
+BookStore.Domain/bin/
+BookStore.Domain/obj/Debug/BookStore.Domain.csproj.FileListAbsolute.txt
+BookStore.Domain/obj/
+BookStoreWebsite.Tests/obj/
+BookStoreWebsite/obj/
