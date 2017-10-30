@@ -60,6 +60,7 @@ namespace BookStoreWebsite.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+        
     }
 
     public class RegisterViewModel
@@ -79,8 +80,17 @@ namespace BookStoreWebsite.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        [MustBeTrue(ErrorMessage = "You must accept iKsiążka Terms of Use!")]
+        [Display(Name = "I accept iKsiążka Terms of Use")]
+        public bool AcceptTerms { get; set; }
     }
-
+    public class MustBeTrueAttribute : ValidationAttribute
+    {
+        public override bool IsValid(object value)
+        {
+            return value is bool && (bool)value;
+        }
+    }
     public class ResetPasswordViewModel
     {
         [Required]

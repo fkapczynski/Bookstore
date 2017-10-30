@@ -1,4 +1,5 @@
 ﻿using BookStore.Domain.Abstract;
+using BookStore.Domain.Concrete;
 using BookStore.Domain.Entities;
 using Moq;
 using Ninject;
@@ -25,13 +26,14 @@ namespace BookStoreWebsite.Infrastructure
         }
         private void AddBindings()
         {
-            Mock<IBookRespository> mockRespository = new Mock<IBookRespository>();
-            mockRespository.Setup(b => b.Books).Returns(new List<Book> {
-                new Book() {Title = "Harry Potter 1",BookID=1,Price=34.99 },
-                new Book() {Title = "Harry Potter 2",BookID=2,Price=39.99 },
-                new Book() {Title = "C# dla bysztrzków",BookID=3,Price=49.95 }
-            }.AsQueryable());
-            ninjectKernel.Bind<IBookRespository>().ToConstant(mockRespository.Object);
+            //Mock<IBookRespository> mockRespository = new Mock<IBookRespository>();
+            //mockRespository.Setup(b => b.Books).Returns(new List<Book> {
+            //    new Book() {Title = "Harry Potter 1",BookID=1,Price=34.99 },
+            //    new Book() {Title = "Harry Potter 2",BookID=2,Price=39.99 },
+            //    new Book() {Title = "C# dla bysztrzków",BookID=3,Price=49.95 }
+            //}.AsQueryable());
+            //ninjectKernel.Bind<IBookRespository>().ToConstant(mockRespository.Object);
+            ninjectKernel.Bind<IBookRespository>().To<EFBooksRespository>();
         }
     }
 }
