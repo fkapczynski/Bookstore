@@ -1,4 +1,6 @@
-﻿using BookStoreWebsite.Infrastructure;
+﻿using BookStore.Domain.Entities;
+using BookStoreWebsite.Binders;
+using BookStoreWebsite.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +20,7 @@ namespace BookStoreWebsite
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
+            ModelBinders.Binders.Add(typeof(Cart), new CartModelBinder());
         }
     }
 }

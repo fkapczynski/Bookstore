@@ -58,11 +58,17 @@
         <td>
             @Html.DisplayFor(modelItem => item.SeriesID)
         </td>
-        @*<td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BookID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BookID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BookID })
-        </td>*@
+        <td class="addToCart">
+            @using (Html.BeginForm("AddToCart", "Cart"))
+            {
+                @Html.Hidden("bookId",item.BookID)
+                @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                <input type="submit" value="+ Dodaj do koszyka" />
+            }
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.BookID }) |*@
+            @*@Html.ActionLink("Details", "Details", new { id=item.BookID }) |*@
+        </td>
+
     </tr>
 }
 

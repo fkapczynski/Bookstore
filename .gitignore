@@ -7,3 +7,9 @@ BookStore.Domain/obj/Debug/BookStore.Domain.csproj.FileListAbsolute.txt
 BookStore.Domain/obj/
 BookStoreWebsite.Tests/obj/
 BookStoreWebsite/obj/
+BookStoreWebsite/BookStoreWebsite/bin/
+BookStoreWebsite/BookStoreWebsite/obj/
+BookStoreWebsite/BookStoreWebsite.Tests/bin/
+BookStoreWebsite/BookStoreWebsite.Tests/obj/
+BookStoreWebsite/BookStore.Domain/obj/
+BookStoreWebsite/BookStore.Domain/bin/

@@ -1,0 +1,45 @@
+﻿@model BookStoreWebsite.Models.CartIndexViewModel
+
+@{
+    ViewBag.Title = "Koszyk";
+}
+
+<h2>Twój koszyk</h2>
+<table width="90%" align="center">
+    <thead><tr>
+        <th>Ilość</th>
+        <th>Książka</th>
+        <th>Cena</th>
+        <th>Wartość</th>
+    </tr></thead>
+    <tbody>
+        @foreach (var line in Model.Cart.Lines)
+        {
+            <tr>
+                <td align="center">@line.Quantity</td>
+                <td align="left">@line.Book.Title</td>
+                <td align="right">@line.Book.Price</td>
+                <td align="right">@((line.Quantity * @line.Book.Price).ToString("c"))</td>
+                <td>
+                    @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                    {
+                        @Html.Hidden("bookId", line.Book.BookID)
+                        @*@Html.Hidden("returnUrl", Request.Url.PathAndQuery)*@
+                        @Html.HiddenFor(x => x.ReturnUrl)
+                        <input type="submit" value="Usuń" />
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" align="right">Łączna wartość zamówienia</td>
+            <td align="right">@Model.Cart.ComputeTotalPrice().ToString("c")</td>
+        </tr>
+    </tfoot>
+</table>
+<p align="center" class="actionButtons">
+    <a href="@Model.ReturnUrl">Kontunuuj zakupy</a>
+</p>
+

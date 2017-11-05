@@ -22,3 +22,18 @@ select,
 textarea {
     max-width: 280px;
 }
+
+form{margin: 0; padding: 0;}
+td.addToCart form {float: right;}
+td.addToCart input{color: white; background-color: #333; border: 1px solid black;
+                   cursor:pointer;
+}
+
+h2{margin-top: 0.3em}
+tfoot td {border-top:1px dotted gray; font-weight:bold}
+.actionButtons a, input.actionButtons{
+    font: .8em Arial; color: black; margin: .3em; text-decoration:none;
+    padding: .15em 1.5em .2em 1.5em; background-color: azure; border: 1px solid black;
+}
+
+div#cart{float: right; margin: .8em; color: silver; background-color: #555}
