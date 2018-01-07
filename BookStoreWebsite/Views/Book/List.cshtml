@@ -12,25 +12,25 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Title)
+            Tytuł:
         </th>
         <th>
-            Autor
+            Autor:
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            Cena:
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.QunatityInStore)
+            Wydawca:
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PublisherID)
+            Egzemplarzy na stanie:
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CategoryID)
+            Kategoria:
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SeriesID)
+            Seria:
         </th>
         <th></th>
     </tr>
@@ -47,16 +47,16 @@
             @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.BookPublisher.PublisherName)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.QunatityInStore)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PublisherID)
+            @Html.DisplayFor(modelItem => item.BookCategory.CategoryName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CategoryID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SeriesID)
+            @Html.DisplayFor(modelItem => item.BookSeries.SeriesTitle)
         </td>
         <td class="addToCart">
             @using (Html.BeginForm("AddToCart", "Cart"))

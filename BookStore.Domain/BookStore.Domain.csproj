@@ -59,10 +59,12 @@
     <Compile Include="Entities\Book.cs" />
     <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\CartLine.cs" />
+    <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\OrderDetails.cs" />
     <Compile Include="Entities\OrderHistoryItem.cs" />
     <Compile Include="Entities\Publisher.cs" />
+    <Compile Include="Entities\Series.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

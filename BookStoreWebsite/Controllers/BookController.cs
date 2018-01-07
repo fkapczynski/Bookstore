@@ -16,11 +16,11 @@ namespace BookStoreWebsite.Controllers
         // GET: Book
         public ViewResult List()
         {
-            var books = respository.Books;
-            foreach (var item in books)
-            {
-                item.BookAuthor = respository.GetAuthor(item.AuthorID);
-            }
+            var books = respository.BooksData;
+            //foreach (var item in books)
+            //{
+            //    item.BookAuthor = respository.GetAuthor(item.AuthorID);
+            //}
             return View(books);
         }
     }

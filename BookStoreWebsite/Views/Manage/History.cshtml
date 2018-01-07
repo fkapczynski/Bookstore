@@ -21,6 +21,9 @@
             Autor
         </th>
         <th>
+            Wydawca
+        </th>
+        <th>
             Liczba sztuk
         </th>
         <th>
@@ -43,6 +46,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modell => detail.Book.BookAuthor.FullName);
+                </td>
+                <td>
+                    @Html.DisplayFor(modell => detail.Book.BookPublisher.PublisherName);
                 </td>
                 <td>
                     @Html.DisplayFor(modell => detail.NumberOfCopies);

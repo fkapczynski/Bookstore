@@ -8,7 +8,8 @@ namespace BookStore.Domain.Entities
 {
     public class Publisher
     {
-        public string Name { get; set; }
-        public string ContactEmail { get; set; }
+        public int PublisherId { get; set; }
+        public string PublisherName { get; set; }
+        public string ContactMail { get; set; }
     }
 }

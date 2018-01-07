@@ -23,14 +23,17 @@ namespace BookStore.Domain.Entities
             AuthorID = authorID;
             SeriesID = seriesID;
         }
-        public Author BookAuthor { get; set; }
         public int BookID { get; set; }
         public string Title { get; set; }
         public double Price { get; set; }
         public int QunatityInStore { get; set; }
         public int PublisherID { get; set; }
+        public Publisher BookPublisher { get; set; }
         public int AuthorID { get; set; }
+        public Author BookAuthor { get; set; }
         public int? CategoryID { get; set; }
+        public Category BookCategory { get; set; }
         public int? SeriesID { get; set; }
+        public Series BookSeries { get; set; }
     }
 }

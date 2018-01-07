@@ -120,8 +120,8 @@ namespace BookStoreWebsite.Controllers
                 List<OrderDetails> details = orderRepo.GetDetails(order.OrderId).ToList();
                 foreach (var detail in details)
                 {
-                    detail.Book = bookRepo.Books.First(b => b.BookID == detail.BookId);
-                    detail.Book.BookAuthor = bookRepo.GetAuthor(detail.Book.AuthorID);
+                    detail.Book = bookRepo.BooksData.First(b => b.BookID == detail.BookId);
+                    //detail.Book.BookAuthor = bookRepo.GetAuthor(detail.Book.AuthorID);
                 }
                 historyItems.Add(new OrderHistoryItem() {
                     Details = details,

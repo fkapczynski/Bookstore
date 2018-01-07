@@ -14,6 +14,9 @@ namespace BookStore.Domain.Concrete
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
         public DbSet<Author> Authors { get; set; }
+        public DbSet<Series> Series { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Publisher> Publishers { get; set; }
         
 
     }
