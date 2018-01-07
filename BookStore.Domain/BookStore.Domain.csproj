@@ -60,6 +60,7 @@
     <Compile Include="Entities\CartLine.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\OrderDetails.cs" />
+    <Compile Include="Entities\OrderHistoryItem.cs" />
     <Compile Include="Entities\Publisher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,6 +1,7 @@
 ﻿using BookStore.Domain.Abstract;
 using BookStore.Domain.Entities;
 using BookStoreWebsite.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -62,9 +63,28 @@ namespace BookStoreWebsite.Controllers
         }
         public ViewResult Summary(Cart cart)
         {
-            //var test = orderRepostiory.GetOrders("624682d4-7e2b-4e44-a7b7-611bebb51e1c");
-            //IList orders=orderRepostiory.GetOrders("624682d4-7e2b-4e44-a7b7-611bebb51e1c").ToList();
+            //cart = cart == null ? new Cart() : cart;
             return View(cart);
+        }
+        
+        public ViewResult Checkout(Cart cart)
+        {
+            if (cart.Lines.Count() == 0)
+            {
+                ModelState.AddModelError("", "Sorry, your cart is empty!");
+            }
+            User.Identity.GetUserId();
+            if (ModelState.IsValid)
+            {
+                orderRepostiory.UserID = User.Identity.GetUserId();
+                orderRepostiory.AddOrder(cart);
+                cart.Clear();
+                return View("Index",new CartIndexViewModel() { Cart=cart,ReturnUrl="/Home/Index"});
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }

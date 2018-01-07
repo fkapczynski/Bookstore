@@ -8,6 +8,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BookStoreWebsite.Models;
 using BookStore.Domain.Abstract;
+using BookStore.Domain.Entities;
+using System.Collections.Generic;
 
 namespace BookStoreWebsite.Controllers
 {
@@ -17,14 +19,15 @@ namespace BookStoreWebsite.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public ManageController(IOrderRepository repo)
+        public ManageController(IOrderRepository repo,IBookRespository bookRepo)
         {
-            this.repo = repo;
+            this.orderRepo = repo;
+            this.bookRepo = bookRepo;
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IOrderRepository repo)
         {
-            this.repo = repo;
+            this.orderRepo = repo;
             UserManager = userManager;
             SignInManager = signInManager;
         }
@@ -110,8 +113,21 @@ namespace BookStoreWebsite.Controllers
         }
         public ActionResult History()
         {
-            var list = repo.GetOrders("624682d4-7e2b-4e44-a7b7-611bebb51e1c");
-            return View(list);
+            List<Order> list = orderRepo.GetOrders(User.Identity.GetUserId()).ToList();
+            List<OrderHistoryItem> historyItems = new List<OrderHistoryItem>();
+            foreach (var order in list)
+            {
+                List<OrderDetails> details = orderRepo.GetDetails(order.OrderId).ToList();
+                foreach (var detail in details)
+                {
+                    detail.Book = bookRepo.Books.First(b => b.BookID == detail.BookId);
+                }
+                historyItems.Add(new OrderHistoryItem() {
+                    Details = details,
+                    OrderDate = order.OrderDate
+                });
+            }
+            return View(historyItems);
         }
 
         //
@@ -344,7 +360,8 @@ namespace BookStoreWebsite.Controllers
 #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
-        private IOrderRepository repo;
+        private IOrderRepository orderRepo;
+        private IBookRespository bookRepo;
 
         private IAuthenticationManager AuthenticationManager
         {

@@ -9,6 +9,6 @@
         @Model.Lines.Sum(x => x.Quantity) sztuk,
         @Model.ComputeTotalPrice().ToString("c")
     </span>
-    @Html.ActionLink("Zamów", "Index", "Cart",
+    @Html.ActionLink("Zamów", "Checkout", "Cart",
     new {returnUrl = Request.Url.PathAndQuery },null)
 </div>

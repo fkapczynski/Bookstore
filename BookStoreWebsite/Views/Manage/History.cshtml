@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BookStore.Domain.Entities.Order>
+﻿@model IEnumerable<BookStore.Domain.Entities.OrderHistoryItem>
 
 @{
     ViewBag.Title = "History";
@@ -12,32 +12,43 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.EmployeeId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserId)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.OrderDate)
         </th>
-        <th></th>
+        <th>
+            Tytuł
+        </th>
+        <th>
+            Liczba sztuk
+        </th>
+        <th>
+            Cena
+        </th>
+        
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.EmployeeId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserId)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.OrderDate)
         </td>
+        @foreach(var detail in item.Details)
+        {
+            @*<tr>*@
+                <td>
+                    @Html.DisplayFor(modell => detail.Book.Title);
+                </td>
+                <td>
+                    @Html.DisplayFor(modell => detail.NumberOfCopies);
+                </td>
+                <td>
+                    @Html.DisplayFor(modell => detail.PricePerBook);
+                </td>
+            @*</tr>*@
+        }
         @*<td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OrderId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OrderId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OrderId })
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
         </td>*@
     </tr>
 }
