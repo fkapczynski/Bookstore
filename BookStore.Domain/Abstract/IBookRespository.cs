@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace BookStore.Domain.Abstract
 {
-    public interface IBookRespository
+    public interface IBookRepository
     {
         IQueryable<Book> Books { get; }
+        Author GetAuthor(int authorId);
 
     }
 }

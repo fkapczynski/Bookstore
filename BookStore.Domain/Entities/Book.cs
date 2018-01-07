@@ -8,13 +8,29 @@ namespace BookStore.Domain.Entities
 {
     public class Book
     {
+        public Book()
+        {
+            
+        }
+        public Book(int bookID, string title, double price, int qunatityInStore, int publisherID, int categoryID, int authorID, int seriesID)
+        {
+            BookID = bookID;
+            Title = title;
+            Price = price;
+            QunatityInStore = qunatityInStore;
+            PublisherID = publisherID;
+            CategoryID = categoryID;
+            AuthorID = authorID;
+            SeriesID = seriesID;
+        }
+        public Author BookAuthor { get; set; }
         public int BookID { get; set; }
         public string Title { get; set; }
         public double Price { get; set; }
         public int QunatityInStore { get; set; }
         public int PublisherID { get; set; }
-        public int CategoryID { get; set; }
         public int AuthorID { get; set; }
-        public int SeriesID { get; set; }
+        public int? CategoryID { get; set; }
+        public int? SeriesID { get; set; }
     }
 }

@@ -13,10 +13,10 @@ namespace BookStoreWebsite.Controllers
 {
     public class CartController : Controller
     {
-        private IBookRespository repository;
+        private IBookRepository repository;
         private IOrderRepository orderRepostiory;
 
-        public CartController(IBookRespository repository,IOrderRepository orderRepository)
+        public CartController(IBookRepository repository,IOrderRepository orderRepository)
         {
             this.repository = repository;
             this.orderRepostiory = orderRepository;
@@ -83,7 +83,7 @@ namespace BookStoreWebsite.Controllers
             }
             else
             {
-                return View();
+                return View();//Tutaj dorzuć to co wyżej
             }
         }
     }

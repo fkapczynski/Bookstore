@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Domain.Concrete
 {
-    public class EFBooksRespository: IBookRespository
+    public class EFBooksRespository: IBookRepository
     {
         private EFDbContext context = new EFDbContext();
 
@@ -16,6 +16,10 @@ namespace BookStore.Domain.Concrete
         {
             get { return context.Books; }
         }
-        
+
+        public Author GetAuthor(int authorId)
+        {
+            return context.Authors.First(a => a.AuthorId == authorId);
+        }
     }
 }

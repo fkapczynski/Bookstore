@@ -18,6 +18,9 @@
             Tytuł
         </th>
         <th>
+            Autor
+        </th>
+        <th>
             Liczba sztuk
         </th>
         <th>
@@ -33,9 +36,13 @@
         </td>
         @foreach(var detail in item.Details)
         {
-            @*<tr>*@
+            <tr style="border-bottom: 1px solid #000">
+                <td></td>
                 <td>
                     @Html.DisplayFor(modell => detail.Book.Title);
+                </td>
+                <td>
+                    @Html.DisplayFor(modell => detail.Book.BookAuthor.FullName);
                 </td>
                 <td>
                     @Html.DisplayFor(modell => detail.NumberOfCopies);
@@ -43,14 +50,9 @@
                 <td>
                     @Html.DisplayFor(modell => detail.PricePerBook);
                 </td>
-            @*</tr>*@
+            </tr>
         }
-        @*<td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>*@
-    </tr>
+    </tr >
 }
 
 </table>

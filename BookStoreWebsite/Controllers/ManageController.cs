@@ -19,7 +19,7 @@ namespace BookStoreWebsite.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public ManageController(IOrderRepository repo,IBookRespository bookRepo)
+        public ManageController(IOrderRepository repo,IBookRepository bookRepo)
         {
             this.orderRepo = repo;
             this.bookRepo = bookRepo;
@@ -121,6 +121,7 @@ namespace BookStoreWebsite.Controllers
                 foreach (var detail in details)
                 {
                     detail.Book = bookRepo.Books.First(b => b.BookID == detail.BookId);
+                    detail.Book.BookAuthor = bookRepo.GetAuthor(detail.Book.AuthorID);
                 }
                 historyItems.Add(new OrderHistoryItem() {
                     Details = details,
@@ -361,7 +362,7 @@ namespace BookStoreWebsite.Controllers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
         private IOrderRepository orderRepo;
-        private IBookRespository bookRepo;
+        private IBookRepository bookRepo;
 
         private IAuthenticationManager AuthenticationManager
         {

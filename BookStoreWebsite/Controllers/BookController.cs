@@ -8,15 +8,20 @@ namespace BookStoreWebsite.Controllers
 {
     public class BookController : Controller
     {
-        private IBookRespository respository;
-        public BookController(IBookRespository bookRespository)
+        private IBookRepository respository;
+        public BookController(IBookRepository bookRespository)
         {
             respository = bookRespository;
         }
         // GET: Book
         public ViewResult List()
         {
-            return View(respository.Books);
+            var books = respository.Books;
+            foreach (var item in books)
+            {
+                item.BookAuthor = respository.GetAuthor(item.AuthorID);
+            }
+            return View(books);
         }
     }
 }
