@@ -2,6 +2,7 @@
 using BookStore.Domain.Entities;
 using BookStoreWebsite.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,9 +13,12 @@ namespace BookStoreWebsite.Controllers
     public class CartController : Controller
     {
         private IBookRespository repository;
-        public CartController(IBookRespository repository)
+        private IOrderRepository orderRepostiory;
+
+        public CartController(IBookRespository repository,IOrderRepository orderRepository)
         {
             this.repository = repository;
+            this.orderRepostiory = orderRepository;
         }
         public RedirectToRouteResult AddToCart(Cart cart,int bookId, string returnUrl)
         {
@@ -58,6 +62,8 @@ namespace BookStoreWebsite.Controllers
         }
         public ViewResult Summary(Cart cart)
         {
+            //var test = orderRepostiory.GetOrders("624682d4-7e2b-4e44-a7b7-611bebb51e1c");
+            //IList orders=orderRepostiory.GetOrders("624682d4-7e2b-4e44-a7b7-611bebb51e1c").ToList();
             return View(cart);
         }
     }

@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BookStoreWebsite.Models;
+using BookStore.Domain.Abstract;
 
 namespace BookStoreWebsite.Controllers
 {
@@ -16,12 +17,14 @@ namespace BookStoreWebsite.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public ManageController()
+        public ManageController(IOrderRepository repo)
         {
+            this.repo = repo;
         }
 
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IOrderRepository repo)
         {
+            this.repo = repo;
             UserManager = userManager;
             SignInManager = signInManager;
         }
@@ -104,6 +107,11 @@ namespace BookStoreWebsite.Controllers
         public ActionResult AddPhoneNumber()
         {
             return View();
+        }
+        public ActionResult History()
+        {
+            var list = repo.GetOrders("624682d4-7e2b-4e44-a7b7-611bebb51e1c");
+            return View(list);
         }
 
         //
@@ -336,6 +344,7 @@ namespace BookStoreWebsite.Controllers
 #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
+        private IOrderRepository repo;
 
         private IAuthenticationManager AuthenticationManager
         {

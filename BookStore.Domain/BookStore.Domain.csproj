@@ -50,11 +50,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IBookRespository.cs" />
+    <Compile Include="Abstract\IOrderRepository.cs" />
     <Compile Include="Concrete\EFBooksRespository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
+    <Compile Include="Concrete\EFOrderRepository.cs" />
+    <Compile Include="Entities\Author.cs" />
     <Compile Include="Entities\Book.cs" />
     <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\CartLine.cs" />
+    <Compile Include="Entities\Order.cs" />
+    <Compile Include="Entities\OrderDetails.cs" />
+    <Compile Include="Entities\Publisher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -10,6 +10,8 @@
             @Html.ActionLink("Cześć " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
         <li>@{Html.RenderAction("Summary", "Cart");}</li>
+        <li>@Html.ActionLink("Historia", "History", "Manage")</li>
+        
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Wyloguj się</a></li>
         @*<li>@Html.ActionLink()</li>*@
     </ul>
