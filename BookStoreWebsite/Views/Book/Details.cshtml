@@ -1,0 +1,74 @@
+﻿@model BookStore.Domain.Entities.Book
+
+<div>
+    <h4>Book</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BookAuthor.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookAuthor.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookCategory.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookCategory.CategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookPublisher.PublisherName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookPublisher.PublisherName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookSeries.SeriesTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookSeries.SeriesTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QunatityInStore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QunatityInStore)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <p>
+        @Html.Action("OpinionCreate", new { bookId = Model.BookID })
+    </p>
+   
+
+
+</div>
+<p>
+    @Html.ActionLink("Back to List", "List")
+</p>

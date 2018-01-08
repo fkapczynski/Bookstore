@@ -10,6 +10,7 @@ using BookStoreWebsite.Models;
 using BookStore.Domain.Abstract;
 using BookStore.Domain.Entities;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 
 namespace BookStoreWebsite.Controllers
 {
@@ -19,10 +20,11 @@ namespace BookStoreWebsite.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public ManageController(IOrderRepository repo,IBookRepository bookRepo)
+        public ManageController(IOrderRepository repo,IBookRepository bookRepo, IAdressRepository adressRepo)
         {
             this.orderRepo = repo;
             this.bookRepo = bookRepo;
+            this.adressRepo = adressRepo;
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IOrderRepository repo)
@@ -237,7 +239,49 @@ namespace BookStoreWebsite.Controllers
             }
             return RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
         }
+        //public ActionResult ChangeAdress()
+        //{
+        //        return View();
+        //}
+        public ActionResult ChangeAdress(AdressViewModel model)
+        {
+            Adress adress = adressRepo.GetAdress(User.Identity.GetUserId());
+            if (adress != null)
+            {
+                model.ApartmentNumber = adress.ApartmentNumber;
+                model.City = adress.City;
+                model.Country = adress.Country;
+                model.HouseNumber = adress.HouseNumber;
+                model.Street = adress.Street;
+                model.PostalCode = adress.PostalCode;
+            }
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            return View(model);
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeAdress(Adress adress)
+        {
+            try
+            {
+                adress.UserId = User.Identity.GetUserId();
+                if (ModelState.IsValid)
+                {
+                    adressRepo.SaveAdress(adress);
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (RetryLimitExceededException /* dex */)
+            {
+                //Log the error(uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
+            return View(adress);
+        }
         //
         // GET: /Manage/ChangePassword
         public ActionResult ChangePassword()
@@ -363,6 +407,7 @@ namespace BookStoreWebsite.Controllers
         private const string XsrfKey = "XsrfId";
         private IOrderRepository orderRepo;
         private IBookRepository bookRepo;
+        private IAdressRepository adressRepo;
 
         private IAuthenticationManager AuthenticationManager
         {

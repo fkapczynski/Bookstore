@@ -1,0 +1,85 @@
+﻿@model IEnumerable<BookStore.Domain.Entities.Book>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Wyszukiwanie książek</h2>
+
+<p>
+    @using (Html.BeginForm())
+    {
+    <p>
+        Title: @Html.TextBox("searchString") <br /><br />
+        @Html.RadioButton("searchType", "title",true) [Tytuł] 
+        @Html.RadioButton("searchType", "author") [Nazwisko autora]
+        @Html.RadioButton("searchType", "publisher") [Wydawnictwo]<br />
+        <input type="submit" value="Filter" />
+    </p>
+    }
+</p>
+ <table class="table">
+    <tr>
+        <th>
+            Tytuł:
+        </th>
+        <th>
+            Autor:
+        </th>
+        <th>
+            Cena:
+        </th>
+        <th>
+            Wydawca:
+        </th>
+        <th>
+            Egzemplarzy na stanie:
+        </th>
+        <th>
+            Kategoria:
+        </th>
+        <th>
+            Seria:
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+            {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Title ,"Details","Book", new { id = item.BookID }, null)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookAuthor.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookPublisher.PublisherName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QunatityInStore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookCategory.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookSeries.SeriesTitle)
+            </td>
+            <td class="addToCart">
+                @using (Html.BeginForm("AddToCart", "Cart"))
+                {
+                    @Html.Hidden("bookId", item.BookID)
+                    @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                    <input type="submit" value="+ Dodaj do koszyka" />
+                }
+                @*@Html.ActionLink("Edit", "Edit", new { id=item.BookID }) |*@
+                @*@Html.ActionLink("Details", "Details", new { id=item.BookID }) |*@
+            </td>
+
+        </tr>
+    }
+
+</table>

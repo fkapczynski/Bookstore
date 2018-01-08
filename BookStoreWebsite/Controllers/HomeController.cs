@@ -16,8 +16,7 @@ namespace BookStoreWebsite.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
-            return View();
+            return Redirect("/Book/Search");
         }
 
         public ActionResult Contact()

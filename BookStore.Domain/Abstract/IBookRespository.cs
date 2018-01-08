@@ -15,6 +15,8 @@ namespace BookStore.Domain.Abstract
         Publisher GetPublisher(int publisherId);
         Category GetCategory(int categoryId);
         Series GetSeries(int seriesId);
+        Book DetailsData(Book book);
+        Book GetBook(int id);
 
     }
 }

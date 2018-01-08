@@ -35,6 +35,10 @@ namespace BookStoreWebsite.Infrastructure
             //ninjectKernel.Bind<IBookRespository>().ToConstant(mockRespository.Object);
             ninjectKernel.Bind<IBookRepository>().To<EFBooksRespository>();
             ninjectKernel.Bind<IOrderRepository>().To<EFOrderRepository>();
+            ninjectKernel.Bind<IAdressRepository>().To<EFAdressRespository>();
+            ninjectKernel.Bind<IOpinionRepository>().To<EFOpinionRepository>();
+            ninjectKernel.Bind<IErrorRepository>().To<EFErrorRepository>();
+
         }
     }
 }

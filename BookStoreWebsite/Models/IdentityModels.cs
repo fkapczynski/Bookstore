@@ -29,5 +29,15 @@ namespace BookStoreWebsite.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<BookStore.Domain.Entities.Book> Books { get; set; }
+
+        public System.Data.Entity.DbSet<BookStore.Domain.Entities.Author> Authors { get; set; }
+
+        public System.Data.Entity.DbSet<BookStore.Domain.Entities.Category> Categories { get; set; }
+
+        public System.Data.Entity.DbSet<BookStore.Domain.Entities.Publisher> Publishers { get; set; }
+
+        public System.Data.Entity.DbSet<BookStore.Domain.Entities.Series> Series { get; set; }
     }
 }

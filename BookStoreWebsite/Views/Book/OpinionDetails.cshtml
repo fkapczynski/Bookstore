@@ -1,0 +1,40 @@
+﻿@model BookStore.Domain.Entities.Opinion
+
+<div>
+    <h4>Opinion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.opinionTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.opinionTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.opinionContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.opinionContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.feedbackEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.feedbackEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.recommended)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.recommended)
+        </dd>
+
+    </dl>
+</div>

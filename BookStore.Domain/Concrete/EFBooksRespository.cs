@@ -54,5 +54,21 @@ namespace BookStore.Domain.Concrete
         {
             return context.Series.First(s => s.SeriesId == seriesId);
         }
+        public Book GetBook(int id)
+        {
+            Book book = context.Books.Find(id);
+            book = DetailsData(book);
+            return book;
+        }
+        public Book DetailsData(Book book)
+        {
+            book.BookAuthor = GetAuthor(book.AuthorID);
+            book.BookPublisher = GetPublisher(book.PublisherID);
+            if (book.SeriesID != null)
+                book.BookSeries = GetSeries((int) book.SeriesID);
+            if (book.CategoryID != null)
+                book.BookCategory = GetCategory((int) book.CategoryID);
+            return book;
+        }
     }
 }

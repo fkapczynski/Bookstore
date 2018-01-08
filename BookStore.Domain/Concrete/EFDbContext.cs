@@ -17,7 +17,8 @@ namespace BookStore.Domain.Concrete
         public DbSet<Series> Series { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Publisher> Publishers { get; set; }
-        
-
+        public DbSet<Adress> Adresses { get; set; }
+        public DbSet<Opinion> Opinions { get; set; }
+        public DbSet<Error> Errors { get; set; }
     }
 }
